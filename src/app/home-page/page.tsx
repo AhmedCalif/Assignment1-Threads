@@ -24,11 +24,11 @@ export default function HomePage({ post }: { post: Post }) {
   }
 
   return (
-    <article className="flex flex-col gap-4 py-4 relative">
-      <div className="flex gap-4 items-start">
+    <article className="flex flex-col justify-center items-center gap-6 py-6 mt-16 w-full max-w-xl mx-auto relative">
+      <div className="flex gap-4 items-start w-full">
         
         <Link href={`/${post.user.username}`}>
-          <div className="rounded-full h-10 w-10 overflow-hidden relative">
+          <div className="rounded-full h-12 w-12 overflow-hidden relative">
             <Image
               className="object-cover"
               src={post.user.avatar}
@@ -39,21 +39,20 @@ export default function HomePage({ post }: { post: Post }) {
           </div>
         </Link>
 
-       
-        <div className="flex flex-col gap-2">
-          <div className="flex justify-between">
+        <div className="flex flex-col gap-4 w-full">
+          <div className="flex justify-between items-center">
             <Link href={`/${post.user.username}`}>
-              <div>{post.user.username}</div>
+              <div className="font-bold">{post.user.username}</div>
             </Link>
            
-            <p className="dark:text-neutral-400 text-neutral-600">
+            <p className="dark:text-neutral-400 text-neutral-600 text-sm">
               {Time(new Date(post.date))}
             </p>
           </div>
 
           {/* Post content */}
           <Link href={`/post/${post.id}`}>
-            <p className="font-light">{post.content}</p>
+            <p className="font-light text-md">{post.content}</p>
           </Link>
 
           {renderPostMedia()}
@@ -62,7 +61,7 @@ export default function HomePage({ post }: { post: Post }) {
         </div>
       </div>
 
-      <div className="flex gap-2 dark:text-neutral-400 text-neutral-600">
+      <div className="flex gap-4 dark:text-neutral-400 text-neutral-600 text-sm">
         <p>{post.likes} likes</p>
         <p>·</p>
         <p>{post.replies} replies</p>
