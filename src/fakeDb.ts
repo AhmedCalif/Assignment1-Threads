@@ -43,7 +43,7 @@ const users: User[] = [
 const posts: Post[] = [
     {
         id: 1,
-        user: users[1],
+        user: users[0],
         date: new Date(),
         content: 'new post',    
         likes: 40,
@@ -57,9 +57,11 @@ export function getPost(id: number): Post | undefined {
     return posts.find((post) => post.id === id)
 }
 
-export function getPosts (): Post[] | undefined {
+export function getPosts (): Post[] {
     return posts.filter((post) => !post.replyId)
 }
+
+console.log(getPosts())
 
 export function reponsePosts (id: number): Post[] | undefined {
     return posts.filter((post) => post.replyId === id)

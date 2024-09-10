@@ -1,0 +1,72 @@
+import { type Post } from "@/fakeDb";
+import Image from 'next/image'
+import Link from 'next/link'
+import Time from '@/components/TimeComponent'
+import PostActions from "@/components/PostActions";
+
+export default function HomePage({ post }: { post: Post }) {
+  
+  function renderPostMedia() {
+    if (!post.media) return null; 
+    
+    if (post.media.type === 'image') { 
+      return (
+        <Image
+          src={post.media.url}
+          alt={post.content}
+          width={post.media.width}
+          height={post.media.height}
+          className="rounded-lg"
+        />
+      );
+    }
+    return null;
+  }
+
+  return (
+    <article className="flex flex-col gap-4 py-4 relative">
+      <div className="flex gap-4 items-start">
+        
+        <Link href={`/${post.user.username}`}>
+          <div className="rounded-full h-10 w-10 overflow-hidden relative">
+            <Image
+              className="object-cover"
+              src={post.user.avatar}
+              alt={post.user.username}
+              priority={true}
+              fill={true}
+            />
+          </div>
+        </Link>
+
+       
+        <div className="flex flex-col gap-2">
+          <div className="flex justify-between">
+            <Link href={`/${post.user.username}`}>
+              <div>{post.user.username}</div>
+            </Link>
+           
+            <p className="dark:text-neutral-400 text-neutral-600">
+              {Time(new Date(post.date))}
+            </p>
+          </div>
+
+          {/* Post content */}
+          <Link href={`/post/${post.id}`}>
+            <p className="font-light">{post.content}</p>
+          </Link>
+
+          {renderPostMedia()}
+
+          <PostActions />
+        </div>
+      </div>
+
+      <div className="flex gap-2 dark:text-neutral-400 text-neutral-600">
+        <p>{post.likes} likes</p>
+        <p>·</p>
+        <p>{post.replies} replies</p>
+      </div>
+    </article>
+  );
+}
