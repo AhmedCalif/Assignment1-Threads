@@ -33,7 +33,7 @@ export default function NavBar() {
           </Link>
         </li>
         <li>
-          <Link href="/create-post">
+          <Link href="/create">
             <svg
               className="h-8 w-8 text-gray-300"
               xmlns="http://www.w3.org/2000/svg"
