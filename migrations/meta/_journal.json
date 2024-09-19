@@ -8,6 +8,13 @@
       "when": 1726277000896,
       "tag": "0000_opposite_zaladane",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1726717668713,
+      "tag": "0001_regular_cable",
+      "breakpoints": true
     }
   ]
 }

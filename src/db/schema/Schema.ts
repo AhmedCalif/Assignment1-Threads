@@ -1,4 +1,7 @@
-import { integer, pgTable, serial, text, varchar, timestamp } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, text, varchar, timestamp, pgSchema, boolean,  } from "drizzle-orm/pg-core";
+import { sql } from 'drizzle-orm';
+
+
 
 
 export const users = pgTable('users', {
@@ -9,3 +12,15 @@ export const users = pgTable('users', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
 });
 
+
+
+export const posts = pgTable('posts', {
+  id: serial('id').primaryKey(),                 
+  title: varchar('title', { length: 255 }).notNull(), 
+  content: text('content').notNull(),         
+  isPublished: boolean('is_published').default(false), 
+  createdAt: timestamp('created_at').notNull().defaultNow(), 
+  updatedAt: timestamp('updated_at', { mode: 'string' })      
+    .notNull()
+    .default(sql`now()`)
+});
